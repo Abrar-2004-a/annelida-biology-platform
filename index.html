@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polychaeta Quiz & Study Notes - Interactive Biology Learning</title>
+    <meta name="description" content="Master Polychaeta biology with 20 interactive MCQs and comprehensive bilingual study notes in Arabic and English. Learn about Nereis, Hirudinea, and annelid anatomy.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printable-notes,
+            #printable-notes * {
+                visibility: visible;
+            }
+            #printable-notes {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+            button, .print-hidden {
+                display: none !important;
+            }
+            @page {
+                margin: 2cm;
+            }
+            .border-l-4 {
+                page-break-inside: avoid;
+            }
+            * {
+                color: black !important;
+                background: white !important;
+            }
+        }
+        [dir="rtl"] {
+            text-align: right;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-5xl">
+        <!-- Header -->
+        <div class="mb-6 flex items-center justify-between">
+            <h1 id="main-title" class="text-3xl font-bold text-gray-900">Polychaeta Quiz & Notes</h1>
+            <button id="lang-toggle" class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition">
+                العربية
+            </button>
+        </div>
+
+        <!-- Tabs -->
+        <div class="mb-6">
+            <div class="border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8">
+                    <button id="tab-quiz" class="tab-btn border-b-2 border-blue-500 py-4 px-1 text-blue-600 font-medium">
+                        <span class="tab-quiz-text">Quiz</span>
+                    </button>
+                    <button id="tab-notes" class="tab-btn border-b-2 border-transparent py-4 px-1 text-gray-500 hover:text-gray-700 hover:border-gray-300 font-medium">
+                        <span class="tab-notes-text">Study Notes</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quiz-section" class="space-y-6">
+            <!-- Quiz Card -->
+            <div id="quiz-card" class="bg-white rounded-lg shadow-md p-6">
+                <div class="mb-4">
+                    <div class="flex items-center justify-between mb-2">
+                        <h2 id="question-number" class="text-xl font-semibold">Question 1/20</h2>
+                        <span id="answered-count" class="px-3 py-1 bg-gray-100 rounded-full text-sm">0/20 Answered</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div id="progress-bar" class="bg-blue-600 h-2 rounded-full transition-all" style="width: 5%"></div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 id="question-text" class="text-lg font-semibold mb-4">Loading...</h3>
+                    <div id="options-container" class="space-y-3">
+                        <!-- Options will be inserted here -->
+                    </div>
+
+                    <div class="flex justify-between pt-4">
+                        <button id="prev-btn" class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                            <span class="prev-text">Previous</span>
+                        </button>
+                        <div>
+                            <button id="next-btn" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+                                <span class="next-text">Next</span>
+                            </button>
+                            <button id="submit-btn" class="hidden px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition">
+                                <span class="submit-text">Submit Quiz</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Card -->
+            <div id="results-card" class="hidden bg-white rounded-lg shadow-md p-6">
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-bold mb-2">
+                        <span class="results-title">Quiz Results</span>
+                    </h2>
+                    <p id="score-text" class="text-lg text-gray-600 mb-4">Score: 0/20</p>
+                    <div class="w-full bg-gray-200 rounded-full h-4 mb-2">
+                        <div id="score-progress" class="bg-blue-600 h-4 rounded-full transition-all" style="width: 0%"></div>
+                    </div>
+                    <p id="percentage-text" class="text-2xl font-bold text-blue-600">0%</p>
+                    <p id="grade-text" class="text-gray-600 mt-2">Keep studying!</p>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-semibold text-lg">
+                        <span class="review-text">Review Answers:</span>
+                    </h3>
+                    <div id="review-container" class="space-y-4">
+                        <!-- Review items will be inserted here -->
+                    </div>
+                </div>
+
+                <button id="retake-btn" class="w-full mt-6 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+                    <span class="retake-text">Retake Quiz</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Notes Section -->
+        <div id="notes-section" class="hidden">
+            <div class="bg-white rounded-lg shadow-md">
+                <div class="p-6 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <h2 id="notes-title" class="text-2xl font-bold">Class Polychaeta - Complete Study Notes</h2>
+                        <button id="print-btn" class="print-hidden px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                            </svg>
+                            <span class="print-text">Print Notes</span>
+                        </button>
+                    </div>
+                </div>
+                <div id="printable-notes" class="p-6 space-y-6">
+                    <!-- Notes content will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data
+        const questions = [
+            {
+                id: 1,
+                questionEn: "What is the habitat of Polychaetes?",
+                questionAr: "ما هي بيئة عيش عديدات الأشواك؟",
+                options: [
+                    { en: "Freshwater only", ar: "المياه العذبة فقط" },
+                    { en: "Marine environment", ar: "البيئة البحرية" },
+                    { en: "Terrestrial only", ar: "البرية فقط" },
+                    { en: "Desert", ar: "الصحراء" }
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    en: "Polychaetes (bristle worms) live in the marine environment and are very common in the shallow, intertidal zone.",
+                    ar: "تعيش عديدات الأشواك (الديدان الشعرية) في البيئة البحرية وهي شائعة جداً في المنطقة الضحلة بين المد والجزر."
+                }
+            },
+            {
+                id: 2,
+                questionEn: "What is the feeding nature of many Polychaetes?",
+                questionAr: "ما هي طبيعة تغذية العديد من عديدات الأشواك؟",
+                options: [
+                    { en: "Herbivores", ar: "عاشبة" },
+                    { en: "Carnivores", ar: "آكلة للحوم" },
+                    { en: "Parasites", ar: "طفيليات" },
+                    { en: "Filter feeders", ar: "مغذيات بالترشيح" }
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    en: "Many polychaetes are carnivores and prey on a variety of invertebrates.",
+                    ar: "العديد من عديدات الأشواك هي آكلات لحوم وتتغذى على مجموعة متنوعة من اللافقاريات."
+                }
+            },
+            {
+                id: 3,
+                questionEn: "How many eyes does Nereis have?",
+                questionAr: "كم عدد العيون التي تمتلكها النيريس؟",
+                options: [
+                    { en: "2 eyes", ar: "عينان" },
+                    { en: "4 eyes", ar: "4 عيون" },
+                    { en: "6 eyes", ar: "6 عيون" },
+                    { en: "8 eyes", ar: "8 عيون" }
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    en: "The prostomium of Nereis carries 4 eyes, along with 2 tentacles and 2 palps.",
+                    ar: "يحمل البروستوميوم (الجزء الأمامي) في النيريس 4 عيون، بالإضافة إلى زائدتين ومجستين."
+                }
+            },
+            {
+                id: 4,
+                questionEn: "What is absent in Polychaetes?",
+                questionAr: "ما الذي يكون غائباً في عديدات الأشواك؟",
+                options: [
+                    { en: "Parapodia", ar: "الأرجل الجانبية" },
+                    { en: "Clitellum", ar: "الساج" },
+                    { en: "Chaetae", ar: "الأشواك" },
+                    { en: "Eyes", ar: "العيون" }
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    en: "Clitellum is absent in Polychaetes. It is a characteristic feature of earthworms.",
+                    ar: "الساج غائب في عديدات الأشواك. وهو سمة مميزة لديدان الأرض."
+                }
+            },
+            {
+                id: 5,
+                questionEn: "How many pairs of tentacles does the Peristomium have?",
+                questionAr: "كم عدد أزواج الزوائد التي يحملها البيريستوميوم؟",
+                options: [
+                    { en: "2 pairs", ar: "زوجان" },
+                    { en: "3 pairs", ar: "3 أزواج" },
+                    { en: "4 pairs", ar: "4 أزواج" },
+                    { en: "5 pairs", ar: "5 أزواج" }
+                ],
+                correctAnswer: 2,
+                explanation: {
+                    en: "The Peristomium has 4 pairs of tentacles in Nereis.",
+                    ar: "يحمل البيريستوميوم 4 أزواج من الزوائد في النيريس."
+                }
+            },
+            {
+                id: 6,
+                questionEn: "What does each parapodium consist of?",
+                questionAr: "مما يتكون كل رجل جانبية؟",
+                options: [
+                    { en: "Only notopodium", ar: "نوتوبوديوم فقط" },
+                    { en: "Only neuropodium", ar: "نيوروبوديوم فقط" },
+                    { en: "Dorsal notopodium and ventral neuropodium", ar: "نوتوبوديوم ظهري ونيوروبوديوم بطني" },
+                    { en: "Three lobes", ar: "ثلاثة فصوص" }
+                ],
+                correctAnswer: 2,
+                explanation: {
+                    en: "Each parapodium consists of a dorsal bilobed notopodium and a ventral neuropodium.",
+                    ar: "تتكون كل رجل جانبية من نوتوبوديوم ظهري ثنائي الفص ونيوروبوديوم بطني."
+                }
+            },
+            {
+                id: 7,
+                questionEn: "What are the functions of parapodia?",
+                questionAr: "ما هي وظائف الأرجل الجانبية؟",
+                options: [
+                    { en: "Only locomotion", ar: "الحركة فقط" },
+                    { en: "Only respiration", ar: "التنفس فقط" },
+                    { en: "Locomotion, respiration, and sensation", ar: "الحركة والتنفس والإحساس" },
+                    { en: "Only sensation", ar: "الإحساس فقط" }
+                ],
+                correctAnswer: 2,
+                explanation: {
+                    en: "Parapodia serve as limbs for locomotion, gills for respiration (increase respiratory surface), and for sensation.",
+                    ar: "تعمل الأرجل الجانبية كأطراف للحركة، وخياشيم للتنفس (تزيد من سطح التنفس)، وللإحساس."
+                }
+            },
+            {
+                id: 8,
+                questionEn: "What is the outermost layer of Nereis body wall?",
+                questionAr: "ما هي الطبقة الخارجية لجدار جسم النيريس؟",
+                options: [
+                    { en: "Epidermis", ar: "البشرة" },
+                    { en: "Cuticle", ar: "الكيوتيكل" },
+                    { en: "Muscles", ar: "العضلات" },
+                    { en: "Coelomic epithelium", ar: "الظهارة الجوفية" }
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    en: "The cuticle is the outermost layer secreted by the underlying epidermis. It is thin, non-cellular, and chitinous in nature.",
+                    ar: "الكيوتيكل هو الطبقة الخارجية التي تفرزها البشرة الأساسية. وهو رقيق وغير خلوي وذو طبيعة كيتينية."
+                }
+            },
+            {
+                id: 9,
+                questionEn: "How many types of muscles are found in Nereis body wall?",
+                questionAr: "كم عدد أنواع العضلات الموجودة في جدار جسم النيريس؟",
+                options: [
+                    { en: "One type", ar: "نوع واحد" },
+                    { en: "Two types", ar: "نوعان" },
+                    { en: "Three types", ar: "ثلاثة أنواع" },
+                    { en: "Four types", ar: "أربعة أنواع" }
+                ],
+                correctAnswer: 2,
+                explanation: {
+                    en: "The muscles are of three types: Circular muscles, Longitudinal muscles (four bundles), and Oblique muscles (concerned with retraction of parapodium).",
+                    ar: "العضلات من ثلاثة أنواع: عضلات دائرية، عضلات طولية (أربع حزم)، وعضلات مائلة (مسؤولة عن انكماش الرجل الجانبية)."
+                }
+            },
+            {
+                id: 10,
+                questionEn: "What are the jaws of Nereis embedded in?",
+                questionAr: "أين توجد فكوك النيريس؟",
+                options: [
+                    { en: "Buccal cavity", ar: "التجويف الفمي" },
+                    { en: "Pharynx", ar: "البلعوم" },
+                    { en: "Oesophagus", ar: "المريء" },
+                    { en: "Intestine", ar: "الأمعاء" }
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    en: "A pair of jaws are embedded in the pharynx of Nereis.",
+                    ar: "يوجد زوج من الفكوك مغروسة في البلعوم في النيريس."
+                }
+            },
+            {
+                id: 11,
+                questionEn: "What type of digestion occurs in Nereis?",
+                questionAr: "ما نوع الهضم الذي يحدث في النيريس؟",
+                options: [
+                    { en: "Intracellular", ar: "داخل الخلايا" },
+                    { en: "Extracellular", ar: "خارج الخلايا" },
+                    { en: "Both", ar: "كلاهما" },
+                    { en: "No digestion", ar: "لا يوجد هضم" }
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    en: "Digestion in Nereis is extracellular. The food is masticated by denticles in the buccopharyngeal region.",
+                    ar: "الهضم في النيريس خارج الخلايا. يتم مضغ الطعام بواسطة الأسنان الصغيرة في منطقة الفم والبلعوم."
+                }
+            },
+            {
+                id: 12,
+                questionEn: "What is the main nitrogenous waste in Nereis?",
+                questionAr: "ما هو الفضلات النيتروجينية الرئيسية في النيريس؟",
+                options: [
+                    { en: "Urea", ar: "اليوريا" },
+                    { en: "Uric acid", ar: "حمض اليوريك" },
+                    { en: "Ammonia", ar: "الأمونيا" },
+                    { en: "Creatinine", ar: "الكرياتينين" }
+                ],
+                correctAnswer: 2,
+                explanation: {
+                    en: "The nitrogenous wastes (mainly ammonia) are collected from coelomic fluid and blood by diffusion.",
+                    ar: "يتم جمع الفضلات النيتروجينية (الأمونيا بشكل رئيسي) من السائل الجوفي والدم عن طريق الانتشار."
+                }
+            },
+            {
+                id: 13,
+                questionEn: "How many nephridia are found in each segment of Nereis?",
+                questionAr: "كم عدد الكليات الصغيرة الموجودة في كل قطعة في النيريس؟",
+                options: [
+                    { en: "One pair", ar: "زوج واحد" },
+                    { en: "Two pairs", ar: "زوجان" },
+                    { en: "Three pairs", ar: "ثلاثة أزواج" },
+                    { en: "No nephridia", ar: "لا يوجد كليات صغيرة" }
+                ],
+                correctAnswer: 0,
+                explanation: {
+                    en: "One pair of nephridia are found in each segment except a few anterior and a few posterior ones.",
+                    ar: "يوجد زوج واحد من الكليات الصغيرة في كل قطعة باستثناء القليل من القطع الأمامية والخلفية."
+                }
+            },
+            {
+                id: 14,
+                questionEn: "What color is the blood of Nereis?",
+                questionAr: "ما لون دم النيريس؟",
+                options: [
+                    { en: "Blue", ar: "أزرق" },
+                    { en: "Green", ar: "أخضر" },
+                    { en: "Red", ar: "أحمر" },
+                    { en: "Colorless", ar: "عديم اللون" }
+                ],
+                correctAnswer: 2,
+                explanation: {
+                    en: "The blood is red because it contains Haemoglobin dissolved in the plasma, and has amoeboid corpuscles.",
+                    ar: "الدم أحمر لأنه يحتوي على الهيموجلوبين الذائب في البلازما، وله كريات أميبية."
+                }
+            },
+            {
+                id: 15,
+                questionEn: "Are Polychaetes hermaphrodites?",
+                questionAr: "هل عديدات الأشواك خنثى؟",
+                options: [
+                    { en: "Yes, all are hermaphrodites", ar: "نعم، كلها خنثى" },
+                    { en: "No, sexes are separate", ar: "لا، الجنسين منفصلين" },
+                    { en: "Some are hermaphrodites", ar: "بعضها خنثى" },
+                    { en: "They reproduce asexually", ar: "تتكاثر لاجنسياً" }
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    en: "Sexes are separate in Polychaetes, and the development is indirect with trochophore larva.",
+                    ar: "الجنسان منفصلان في عديدات الأشواك، والنمو غير مباشر مع وجود يرقة التروكوفور."
+                }
+            },
+            {
+                id: 16,
+                questionEn: "What type of larva does Nereis develop into?",
+                questionAr: "ما نوع اليرقة التي يتطور إليها النيريس؟",
+                options: [
+                    { en: "Veliger larva", ar: "يرقة الفيليجر" },
+                    { en: "Trochophore larva", ar: "يرقة التروكوفور" },
+                    { en: "Nauplius larva", ar: "يرقة النوبليوس" },
+                    { en: "Tadpole larva", ar: "يرقة الشرغوف" }
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    en: "The zygote develops into trochophore larva, which has a preoral ciliated ring for swimming.",
+                    ar: "تتطور الزيجوت إلى يرقة التروكوفور، التي لها حلقة هدبية ما قبل الفم للسباحة."
+                }
+            },
+            {
+                id: 17,
+                questionEn: "Do leeches (Hirudinea) have parapodia?",
+                questionAr: "هل العلق (الهيرودينيا) يمتلك أرجل جانبية؟",
+                options: [
+                    { en: "Yes", ar: "نعم" },
+                    { en: "No", ar: "لا" },
+                    { en: "Only males", ar: "الذكور فقط" },
+                    { en: "Only juveniles", ar: "الصغار فقط" }
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    en: "Leeches have no chaetae or parapodia. They use terminal suckers for attachment and locomotion.",
+                    ar: "العلق ليس لديه أشواك أو أرجل جانبية. يستخدم ماصات طرفية للالتصاق والحركة."
+                }
+            },
+            {
+                id: 18,
+                questionEn: "How many suckers does Hirudo medicinalis have?",
+                questionAr: "كم عدد الماصات التي يمتلكها العلق الطبي؟",
+                options: [
+                    { en: "1 sucker", ar: "ماصة واحدة" },
+                    { en: "2 suckers", ar: "ماصتان" },
+                    { en: "3 suckers", ar: "3 ماصات" },
+                    { en: "4 suckers", ar: "4 ماصات" }
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    en: "Hirudo medicinalis has 2 suckers: the anterior sucker encloses the mouth and 3 jaws, while the posterior sucker is not perforated.",
+                    ar: "يمتلك العلق الطبي ماصتين: الماصة الأمامية تحيط بالفم و3 فكوك، بينما الماصة الخلفية غير مثقوبة."
+                }
+            },
+            {
+                id: 19,
+                questionEn: "Are leeches hermaphrodites?",
+                questionAr: "هل العلق خنثى؟",
+                options: [
+                    { en: "No, sexes are separate", ar: "لا، الجنسان منفصلان" },
+                    { en: "Yes, hermaphrodite", ar: "نعم، خنثى" },
+                    { en: "Only some species", ar: "بعض الأنواع فقط" },
+                    { en: "Reproduce asexually", ar: "يتكاثر لاجنسياً" }
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    en: "Leeches are hermaphrodite and development is direct in cocoon.",
+                    ar: "العلق خنثى والنمو مباشر في الشرنقة."
+                }
+            },
+            {
+                id: 20,
+                questionEn: "What does Hirudo medicinalis feed on?",
+                questionAr: "على ماذا يتغذى العلق الطبي؟",
+                options: [
+                    { en: "Plants", ar: "النباتات" },
+                    { en: "Blood of vertebrates", ar: "دم الفقاريات" },
+                    { en: "Small invertebrates", ar: "اللافقاريات الصغيرة" },
+                    { en: "Dead organic matter", ar: "المواد العضوية الميتة" }
+                ],
+                correctAnswer: 1,
+                explanation: {
+                    en: "Hirudo medicinalis is a common freshwater annelid feeding on blood of vertebrates (ectoparasite).",
+                    ar: "العلق الطبي هو حلقي شائع في المياه العذبة يتغذى على دم الفقاريات (طفيل خارجي)."
+                }
+            }
+        ];
+
+        const notes = {
+            en: {
+                title: "Class Polychaeta - Complete Study Notes",
+                sections: [
+                    {
+                        title: "1. General Characteristics of Polychaeta",
+                        content: [
+                            "• Habitat: Marine environment, common in shallow intertidal zones",
+                            "• Feeding: Many are carnivores preying on invertebrates",
+                            "• Large number of chaetae (bristles)",
+                            "• Well-developed head with eyes, tentacles, and palps",
+                            "• Each segment carries one pair of parapodia",
+                            "• Clitellum is absent",
+                            "• Sexes are separate",
+                            "• Indirect development with trochophore larva"
+                        ]
+                    },
+                    {
+                        title: "2. Nereis (Sand Worm) - External Anatomy",
+                        content: [
+                            "• Body divided into 200+ segments",
+                            "• Head Structure:",
+                            "  - Prostomium: carries mouth, 4 eyes, 2 tentacles, 2 palps",
+                            "  - Peristomium: has 4 pairs of tentacles",
+                            "• Parapodia present on body segments",
+                            "• Pygidium with anus at posterior end"
+                        ]
+                    },
+                    {
+                        title: "3. Parapodia Structure",
+                        content: [
+                            "• Each parapodium consists of:",
+                            "  - Dorsal bilobed notopodium with dorsal cirrus and chaetae",
+                            "  - Ventral neuropodium with ventral cirrus and chaetae",
+                            "  - Supported by two long setae (aciculums)",
+                            "• Functions:",
+                            "  - Limbs for locomotion",
+                            "  - Gills for respiration (increase respiratory surface)",
+                            "  - Sensation"
+                        ]
+                    },
+                    {
+                        title: "4. Body Wall Structure (4 Layers)",
+                        content: [
+                            "1. Cuticle: outermost, thin, non-cellular, chitinous",
+                            "2. Epidermis: single layer columnar epithelium with sensory and gland cells",
+                            "3. Muscles: circular, longitudinal (4 bundles), oblique",
+                            "4. Coelomic epithelium: innermost layer"
+                        ]
+                    },
+                    {
+                        title: "5. Digestive System",
+                        content: [
+                            "• Stomodaeum (foregut): buccal cavity + pharynx with jaws",
+                            "• Mesenteron (midgut): oesophagus + intestine with esophageal glands",
+                            "• Proctodaeum (hindgut): rectum opening through anus",
+                            "• Feeding: Carnivorous, pharynx everts to capture prey",
+                            "• Digestion: Extracellular",
+                            "• Absorption: By diffusion in intestine"
+                        ]
+                    },
+                    {
+                        title: "6. Excretory System",
+                        content: [
+                            "• One pair of nephridia per segment (except few anterior/posterior)",
+                            "• Structure: nephrostome (opens in coelom) → coiled tubule → nephridiopore",
+                            "• Nitrogenous waste: mainly ammonia",
+                            "• Process: selective reabsorption of useful substances"
+                        ]
+                    },
+                    {
+                        title: "7. Blood Vascular System",
+                        content: [
+                            "• Closed circulatory system",
+                            "• Dorsal vessel: collecting vessel, blood flows anteriorly",
+                            "• Ventral vessel: distributing vessel, blood flows posteriorly",
+                            "• Connected by transverse segmental vessels",
+                            "• Blood: red (hemoglobin in plasma) with amoeboid corpuscles"
+                        ]
+                    },
+                    {
+                        title: "8. Reproduction & Development",
+                        content: [
+                            "• Sexes separate",
+                            "• No gonoducts or gonopores",
+                            "• Gametes mature in coelom",
+                            "• Fertilization: external in water",
+                            "• Development: indirect via trochophore larva",
+                            "• Trochophore features: preoral ciliated ring, apical sense plate, complete gut"
+                        ]
+                    },
+                    {
+                        title: "9. Class Hirudinea (Leeches) - Key Differences",
+                        content: [
+                            "• Habitat: marine, freshwater, and damp terrestrial",
+                            "• Fixed number of segments subdivided into annuli",
+                            "• Reduced head with no tentacles",
+                            "• NO chaetae or parapodia",
+                            "• Terminal suckers for attachment and locomotion",
+                            "• Hermaphrodite",
+                            "• Direct development in cocoon"
+                        ]
+                    },
+                    {
+                        title: "10. Hirudo Medicinalis (Medical Leech)",
+                        content: [
+                            "• Freshwater ectoparasite",
+                            "• Feeds on blood of vertebrates",
+                            "• 2 suckers: anterior (with mouth and 3 jaws) and posterior",
+                            "• 33 body segments",
+                            "• 5 pairs of eyes on first 5 segments",
+                            "• 17 pairs of nephridiopores on segments 7-23",
+                            "• Male opening on segment 11, female on segment 12"
+                        ]
+                    }
+                ]
+            },
+            ar: {
+                title: "صف عديدات الأشواك - ملاحظات دراسية كاملة",
+                sections: [
+                    {
+                        title: "١. الخصائص العامة لعديدات الأشواك",
+                        content: [
+                            "• البيئة: البيئة البحرية، شائعة في المناطق الضحلة بين المد والجزر",
+                            "• التغذية: العديد منها آكلات لحوم تفترس اللافقاريات",
+                            "• عدد كبير من الأشواك (الشعيرات)",
+                            "• رأس متطور مع عيون وزوائد ومجسات",
+                            "• كل قطعة تحمل زوج واحد من الأرجل الجانبية",
+                            "• الساج غائب",
+                            "• الجنسان منفصلان",
+                            "• نمو غير مباشر مع يرقة التروكوفور"
+                        ]
+                    },
+                    {
+                        title: "٢. النيريس (دودة الرمل) - التشريح الخارجي",
+                        content: [
+                            "• الجسم مقسم إلى أكثر من ٢٠٠ قطعة",
+                            "• تركيب الرأس:",
+                            "  - البروستوميوم: يحمل الفم، ٤ عيون، ٢ زائدة، ٢ مجس",
+                            "  - البيريستوميوم: يحتوي على ٤ أزواج من الزوائد",
+                            "• الأرجل الجانبية موجودة على قطع الجسم",
+                            "• البيجيديوم مع فتحة الشرج في النهاية الخلفية"
+                        ]
+                    },
+                    {
+                        title: "٣. تركيب الأرجل الجانبية",
+                        content: [
+                            "• كل رجل جانبية تتكون من:",
+                            "  - نوتوبوديوم ظهري ثنائي الفص مع الزائدة الظهرية والأشواك",
+                            "  - نيوروبوديوم بطني مع الزائدة البطنية والأشواك",
+                            "  - مدعومة بشعيرتين طويلتين (الأسيكولا)",
+                            "• الوظائف:",
+                            "  - أطراف للحركة",
+                            "  - خياشيم للتنفس (تزيد من سطح التنفس)",
+                            "  - الإحساس"
+                        ]
+                    },
+                    {
+                        title: "٤. تركيب جدار الجسم (٤ طبقات)",
+                        content: [
+                            "١. الكيوتيكل: الطبقة الخارجية، رقيقة، غير خلوية، كيتينية",
+                            "٢. البشرة: طبقة واحدة من الظهارة العمودية مع خلايا حسية وغدية",
+                            "٣. العضلات: دائرية، طولية (٤ حزم)، مائلة",
+                            "٤. الظهارة الجوفية: الطبقة الداخلية"
+                        ]
+                    },
+                    {
+                        title: "٥. الجهاز الهضمي",
+                        content: [
+                            "• الأمامي (المقدم): التجويف الفمي + البلعوم مع الفكوك",
+                            "• الأوسط (المتوسط): المريء + الأمعاء مع الغدد المريئية",
+                            "• الخلفي (المؤخر): المستقيم يفتح من خلال الشرج",
+                            "• التغذية: آكل للحوم، البلعوم ينقلب للقبض على الفريسة",
+                            "• الهضم: خارج الخلايا",
+                            "• الامتصاص: عن طريق الانتشار في الأمعاء"
+                        ]
+                    },
+                    {
+                        title: "٦. الجهاز الإخراجي",
+                        content: [
+                            "• زوج واحد من الكليات الصغيرة لكل قطعة (باستثناء القليل من الأمامية/الخلفية)",
+                            "• التركيب: الفتحة الكلوية (تفتح في الجوف) ← أنبوب ملتوي ← الفتحة الإخراجية",
+                            "• الفضلات النيتروجينية: الأمونيا بشكل رئيسي",
+                            "• العملية: إعادة امتصاص انتقائية للمواد المفيدة"
+                        ]
+                    },
+                    {
+                        title: "٧. الجهاز الدوري الدموي",
+                        content: [
+                            "• جهاز دوري مغلق",
+                            "• الوعاء الظهري: وعاء جامع، يتدفق الدم للأمام",
+                            "• الوعاء البطني: وعاء موزع، يتدفق الدم للخلف",
+                            "• متصلة بأوعية قطعية عرضية",
+                            "• الدم: أحمر (هيموجلوبين في البلازما) مع كريات أميبية"
+                        ]
+                    },
+                    {
+                        title: "٨. التكاثر والنمو",
+                        content: [
+                            "• الجنسان منفصلان",
+                            "• لا توجد قنوات أو فتحات تناسلية",
+                            "• الأمشاج تنضج في الجوف",
+                            "• الإخصاب: خارجي في الماء",
+                            "• النمو: غير مباشر عبر يرقة التروكوفور",
+                            "• مميزات التروكوفور: حلقة هدبية ما قبل الفم، صفيحة حسية قمية، أمعاء كاملة"
+                        ]
+                    },
+                    {
+                        title: "٩. صف الهيرودينيا (العلق) - الفروقات الرئيسية",
+                        content: [
+                            "• البيئة: بحرية، مياه عذبة، وبرية رطبة",
+                            "• عدد ثابت من القطع مقسمة إلى حلقات فرعية",
+                            "• رأس مختزل بدون زوائد",
+                            "• لا توجد أشواك أو أرجل جانبية",
+                            "• ماصات طرفية للالتصاق والحركة",
+                            "• خنثى",
+                            "• نمو مباشر في الشرنقة"
+                        ]
+                    },
+                    {
+                        title: "١٠. العلق الطبي (هيرودو ميديسيناليس)",
+                        content: [
+                            "• طفيل خارجي في المياه العذبة",
+                            "• يتغذى على دم الفقاريات",
+                            "• ماصتان: أمامية (مع الفم و٣ فكوك) وخلفية",
+                            "• ٣٣ قطعة جسمية",
+                            "• ٥ أزواج من العيون على أول ٥ قطع",
+                            "• ١٧ زوج من الفتحات الإخراجية على القطع ٧-٢٣",
+                            "• الفتحة الذكرية على القطعة ١١، والأنثوية على القطعة ١٢"
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // State
+        let currentLanguage = 'en';
+        let currentQuestion = 0;
+        let selectedAnswers = new Array(20).fill(null);
+        let showResults = false;
+
+        // Translation object
+        const translations = {
+            en: {
+                mainTitle: 'Polychaeta Quiz & Notes',
+                langToggle: 'العربية',
+                tabQuiz: 'Quiz',
+                tabNotes: 'Study Notes',
+                question: 'Question',
+                answered: 'Answered',
+                previous: 'Previous',
+                next: 'Next',
+                submit: 'Submit Quiz',
+                resultsTitle: 'Quiz Results',
+                score: 'Score',
+                reviewTitle: 'Review Answers:',
+                yourAnswer: 'Your answer: ',
+                correctAnswer: 'Correct answer: ',
+                retake: 'Retake Quiz',
+                printNotes: 'Print Notes',
+                excellent: 'Excellent!',
+                goodJob: 'Good job!',
+                keepStudying: 'Keep studying!'
+            },
+            ar: {
+                mainTitle: 'اختبار وملاحظات عديدات الأشواك',
+                langToggle: 'English',
+                tabQuiz: 'الاختبار',
+                tabNotes: 'ملاحظات الدراسة',
+                question: 'سؤال',
+                answered: 'مجاب',
+                previous: 'السابق',
+                next: 'التالي',
+                submit: 'إرسال الاختبار',
+                resultsTitle: 'نتائج الاختبار',
+                score: 'النتيجة',
+                reviewTitle: 'مراجعة الإجابات:',
+                yourAnswer: 'إجابتك: ',
+                correctAnswer: 'الإجابة الصحيحة: ',
+                retake: 'إعادة الاختبار',
+                printNotes: 'طباعة الملاحظات',
+                excellent: 'ممتاز!',
+                goodJob: 'عمل جيد!',
+                keepStudying: 'استمر في الدراسة!'
+            }
+        };
+
+        // DOM Elements
+        const elements = {
+            mainTitle: document.getElementById('main-title'),
+            langToggle: document.getElementById('lang-toggle'),
+            tabQuiz: document.getElementById('tab-quiz'),
+            tabNotes: document.getElementById('tab-notes'),
+            quizSection: document.getElementById('quiz-section'),
+            notesSection: document.getElementById('notes-section'),
+            quizCard: document.getElementById('quiz-card'),
+            resultsCard: document.getElementById('results-card'),
+            questionNumber: document.getElementById('question-number'),
+            answeredCount: document.getElementById('answered-count'),
+            progressBar: document.getElementById('progress-bar'),
+            questionText: document.getElementById('question-text'),
+            optionsContainer: document.getElementById('options-container'),
+            prevBtn: document.getElementById('prev-btn'),
+            nextBtn: document.getElementById('next-btn'),
+            submitBtn: document.getElementById('submit-btn'),
+            scoreText: document.getElementById('score-text'),
+            scoreProgress: document.getElementById('score-progress'),
+            percentageText: document.getElementById('percentage-text'),
+            gradeText: document.getElementById('grade-text'),
+            reviewContainer: document.getElementById('review-container'),
+            retakeBtn: document.getElementById('retake-btn'),
+            notesTitle: document.getElementById('notes-title'),
+            printableNotes: document.getElementById('printable-notes'),
+            printBtn: document.getElementById('print-btn')
+        };
+
+        // Functions
+        function updateLanguage() {
+            const t = translations[currentLanguage];
+            
+            elements.mainTitle.textContent = t.mainTitle;
+            elements.langToggle.textContent = t.langToggle;
+            document.querySelector('.tab-quiz-text').textContent = t.tabQuiz;
+            document.querySelector('.tab-notes-text').textContent = t.tabNotes;
+            document.querySelector('.prev-text').textContent = t.previous;
+            document.querySelector('.next-text').textContent = t.next;
+            document.querySelector('.submit-text').textContent = t.submit;
+            document.querySelector('.results-title').textContent = t.resultsTitle;
+            document.querySelector('.review-text').textContent = t.reviewTitle;
+            document.querySelector('.retake-text').textContent = t.retake;
+            document.querySelector('.print-text').textContent = t.printNotes;
+
+            // Update direction
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            
+            if (!showResults) {
+                renderQuestion();
+            } else {
+                renderResults();
+            }
+            renderNotes();
+        }
+
+        function renderQuestion() {
+            const q = questions[currentQuestion];
+            const t = translations[currentLanguage];
+            
+            elements.questionNumber.textContent = `${t.question} ${currentQuestion + 1}/20`;
+            elements.questionText.textContent = currentLanguage === 'en' ? q.questionEn : q.questionAr;
+            elements.questionText.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            
+            const answeredCount = selectedAnswers.filter(a => a !== null).length;
+            elements.answeredCount.textContent = `${answeredCount}/20 ${t.answered}`;
+            
+            elements.progressBar.style.width = `${((currentQuestion + 1) / 20) * 100}%`;
+            
+            elements.optionsContainer.innerHTML = '';
+            q.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = `w-full text-left h-auto py-3 px-4 rounded-md border transition ${
+                    selectedAnswers[currentQuestion] === index 
+                        ? 'bg-blue-600 text-white border-blue-600' 
+                        : 'bg-white border-gray-300 hover:bg-gray-50'
+                }`;
+                button.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+                button.innerHTML = `<span class="mr-2">${String.fromCharCode(65 + index)}.</span>${currentLanguage === 'en' ? option.en : option.ar}`;
+                button.onclick = () => selectAnswer(index);
+                elements.optionsContainer.appendChild(button);
+            });
+            
+            elements.prevBtn.disabled = currentQuestion === 0;
+            
+            if (currentQuestion === 19) {
+                elements.nextBtn.classList.add('hidden');
+                elements.submitBtn.classList.remove('hidden');
+            } else {
+                elements.nextBtn.classList.remove('hidden');
+                elements.submitBtn.classList.add('hidden');
+            }
+        }
+
+        function selectAnswer(index) {
+            selectedAnswers[currentQuestion] = index;
+            renderQuestion();
+        }
+
+        function calculateScore() {
+            let correct = 0;
+            selectedAnswers.forEach((answer, index) => {
+                if (answer === questions[index].correctAnswer) {
+                    correct++;
+                }
+            });
+            return correct;
+        }
+
+        function renderResults() {
+            const score = calculateScore();
+            const percentage = (score / 20) * 100;
+            const t = translations[currentLanguage];
+            
+            elements.scoreText.textContent = `${t.score}: ${score}/20`;
+            elements.scoreProgress.style.width = `${percentage}%`;
+            elements.percentageText.textContent = `${percentage.toFixed(1)}%`;
+            
+            let gradeMessage = t.keepStudying;
+            if (percentage >= 80) gradeMessage = t.excellent;
+            else if (percentage >= 60) gradeMessage = t.goodJob;
+            elements.gradeText.textContent = gradeMessage;
+            
+            elements.reviewContainer.innerHTML = '';
+            questions.forEach((q, qIndex) => {
+                const isCorrect = selectedAnswers[qIndex] === q.correctAnswer;
+                const reviewItem = document.createElement('div');
+                reviewItem.className = 'border rounded-lg p-4 space-y-2';
+                reviewItem.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+                
+                reviewItem.innerHTML = `
+                    <div class="flex items-start gap-2">
+                        <span class="px-2 py-1 rounded text-xs font-semibold ${isCorrect ? 'bg-green-600 text-white' : 'bg-red-600 text-white'}">
+                            ${qIndex + 1}
+                        </span>
+                        <div class="flex-1">
+                            <p class="font-medium">${currentLanguage === 'en' ? q.questionEn : q.questionAr}</p>
+                            <p class="text-sm text-gray-600 mt-2">
+                                ${t.yourAnswer}
+                                <span class="${isCorrect ? 'text-green-600' : 'text-red-600'}">
+                                    ${currentLanguage === 'en' ? q.options[selectedAnswers[qIndex]].en : q.options[selectedAnswers[qIndex]].ar}
+                                </span>
+                            </p>
+                            ${!isCorrect ? `
+                                <p class="text-sm text-gray-600">
+                                    ${t.correctAnswer}
+                                    <span class="text-green-600">
+                                        ${currentLanguage === 'en' ? q.options[q.correctAnswer].en : q.options[q.correctAnswer].ar}
+                                    </span>
+                                </p>
+                            ` : ''}
+                            <p class="text-sm text-gray-600 mt-2 italic">
+                                ${currentLanguage === 'en' ? q.explanation.en : q.explanation.ar}
+                            </p>
+                        </div>
+                    </div>
+                `;
+                
+                elements.reviewContainer.appendChild(reviewItem);
+            });
+        }
+
+        function renderNotes() {
+            const notesData = currentLanguage === 'en' ? notes.en : notes.ar;
+            elements.notesTitle.textContent = notesData.title;
+            elements.notesTitle.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            
+            elements.printableNotes.innerHTML = '';
+            notesData.sections.forEach(section => {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = 'border-l-4 border-blue-600 pl-4';
+                sectionDiv.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+                
+                const title = document.createElement('h3');
+                title.className = 'text-lg font-semibold mb-3';
+                title.textContent = section.title;
+                sectionDiv.appendChild(title);
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'space-y-1';
+                section.content.forEach(item => {
+                    const p = document.createElement('p');
+                    p.className = 'text-gray-600 whitespace-pre-line';
+                    p.textContent = item;
+                    contentDiv.appendChild(p);
+                });
+                sectionDiv.appendChild(contentDiv);
+                
+                elements.printableNotes.appendChild(sectionDiv);
+            });
+        }
+
+        // Event Listeners
+        elements.langToggle.addEventListener('click', () => {
+            currentLanguage = currentLanguage === 'en' ? 'ar' : 'en';
+            updateLanguage();
+        });
+
+        elements.tabQuiz.addEventListener('click', () => {
+            elements.tabQuiz.classList.add('border-blue-500', 'text-blue-600');
+            elements.tabQuiz.classList.remove('border-transparent', 'text-gray-500');
+            elements.tabNotes.classList.remove('border-blue-500', 'text-blue-600');
+            elements.tabNotes.classList.add('border-transparent', 'text-gray-500');
+            elements.quizSection.classList.remove('hidden');
+            elements.notesSection.classList.add('hidden');
+        });
+
+        elements.tabNotes.addEventListener('click', () => {
+            elements.tabNotes.classList.add('border-blue-500', 'text-blue-600');
+            elements.tabNotes.classList.remove('border-transparent', 'text-gray-500');
+            elements.tabQuiz.classList.remove('border-blue-500', 'text-blue-600');
+            elements.tabQuiz.classList.add('border-transparent', 'text-gray-500');
+            elements.notesSection.classList.remove('hidden');
+            elements.quizSection.classList.add('hidden');
+        });
+
+        elements.prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion();
+            }
+        });
+
+        elements.nextBtn.addEventListener('click', () => {
+            if (currentQuestion < 19) {
+                currentQuestion++;
+                renderQuestion();
+            }
+        });
+
+        elements.submitBtn.addEventListener('click', () => {
+            const unanswered = selectedAnswers.filter(a => a === null).length;
+            if (unanswered > 0) {
+                const t = translations[currentLanguage];
+                alert(`${currentLanguage === 'en' ? 'You have' : 'لديك'} ${unanswered} ${currentLanguage === 'en' ? 'unanswered question(s)' : 'سؤال/أسئلة غير مجابة'}.`);
+                return;
+            }
+            showResults = true;
+            elements.quizCard.classList.add('hidden');
+            elements.resultsCard.classList.remove('hidden');
+            renderResults();
+        });
+
+        elements.retakeBtn.addEventListener('click', () => {
+            currentQuestion = 0;
+            selectedAnswers = new Array(20).fill(null);
+            showResults = false;
+            elements.quizCard.classList.remove('hidden');
+            elements.resultsCard.classList.add('hidden');
+            renderQuestion();
+        });
+
+        elements.printBtn.addEventListener('click', () => {
+            window.print();
+        });
+
+        // Initialize
+        renderQuestion();
+        renderNotes();
+    </script>
+</body>
+</html>
